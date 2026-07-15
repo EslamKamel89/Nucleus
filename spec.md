@@ -1,7 +1,7 @@
-# Nucleus — Spec Summary (SSOT condensed)
+# Nucleus — Engineering Specification (SSOT)
 
-Condensed from `spec.md` (authoritative). Consult `spec.md` only for narrative/examples; this file has
-every binding rule, field list, and diagram.
+Authoritative, condensed specification. Every binding rule, field list, default value, and diagram
+lives here.
 
 ## 1. Purpose & Scope
 
@@ -27,9 +27,11 @@ knowledge bases, course notes, API docs.
 
 ## 3. Tech Stack
 
-- **FastAPI** — async Python web framework.
-- **SQLAlchemy 2.x async** + **Alembic** — ORM + migrations.
+- **FastAPI** — async Python web framework. App wiring uses the `lifespan` context-manager pattern
+  (not `@app.on_event`) for startup/shutdown.
+- **SQLAlchemy 2.x async** (via **asyncpg** driver, `postgresql+asyncpg://`) + **Alembic** — ORM + migrations.
 - **PostgreSQL (Neon-hosted)** — relational DB, also vector store via **pgvector** (no separate vector DB).
+- **pydantic-settings** — typed config loaded from `.env`, single `Settings` instance shared app-wide.
 - **Redis** — Celery broker (caching later).
 - **Celery** — background processing (document ingestion, long AI tasks).
 - **WebSockets** (native FastAPI) — streaming responses, progress updates.
@@ -349,3 +351,38 @@ Every form: server-side validation, inline validation messages, CSRF protection,
 ## 56. Accessibility Goals
 
 Not the primary objective but expected: semantic HTML, proper form labels, keyboard navigation, visible focus states, sufficient color contrast, ARIA where appropriate.
+
+## 57. Project Structure
+
+Feature-based layout under `src/`:
+
+```
+src/
+  main.py        # FastAPI app instance + lifespan (startup/shutdown)
+  core/          # cross-cutting infrastructure shared by all apps — config, db, (later: security, middleware, templating)
+  apps/          # one package per feature/module (see §5 Modules)
+    <feature>/   # e.g. auth, dashboard, assistants, documents, knowledge, chat, realtime, settings
+      ...        # routes, services, repositories, models, schemas for that feature
+```
+
+- Each entry under `src/apps/` corresponds to one Module from §5 and is self-contained; it still obeys
+  the Route → Service → Repository flow (§16) internally.
+- `src/core/` holds only shared infrastructure, never business logic or feature-specific code.
+- Repositories/Services named in §14–15 live inside their owning feature's app package, not in a
+  single global `services/`/`repositories/` folder.
+
+## 58. Configuration & Environment
+
+- Config is typed via **pydantic-settings**: `src/core/config/settings.py` defines one
+  `Settings(BaseSettings)` (`model_config = SettingsConfigDict(env_file=".env", extra="ignore")`)
+  loaded from `.env`, exported as a module-level `settings` singleton. Code imports `settings`; it
+  never reads `os.environ` directly.
+- `.env` is git-ignored; `.env.example` documents required keys.
+- Required env vars (v1): `DATABASE_URL` (format `postgresql+asyncpg://user:pass@host:port/db`),
+  `DOMAIN`, `APP_SCHEME` (host/scheme used to build absolute URLs, e.g. links or redirects).
+- DB engine/session (`src/core/db/main.py`): single `AsyncEngine` from
+  `create_async_engine(settings.DATABASE_URL)`; sessions via
+  `async_sessionmaker(expire_on_commit=False, autoflush=False)`; routes/services obtain an
+  `AsyncSession` only through the `get_session()` FastAPI dependency (never instantiate a session
+  directly). `init_db()` / `dispose()` run from `main.py`'s `lifespan` context manager on
+  startup/shutdown respectively.

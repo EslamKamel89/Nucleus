@@ -4,18 +4,40 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Status
 
-This repository currently contains only `spec.md`, the Single Source of Truth (SSOT) engineering
-specification for **Nucleus**, an AI Knowledge Assistant (RAG-based document Q&A app). No application
-code, dependency manifests, or tooling config exist yet. There are no build, lint, or test commands to
-run until the project is scaffolded.
-
-When implementation begins, set up the project to match the stack and structure below, and update this
-file with the real commands (e.g. `uvicorn`, `alembic upgrade head`, `pytest`, `celery -A ... worker`,
-`ruff`) once they exist — do not invent them before they're real.
-
-`spec.md` is already a dense, filler-free reference (condensed from a much longer draft) — read it in
+**Nucleus** is an AI Knowledge Assistant (RAG-based document Q&A app), early in implementation.
+`spec.md` is the authoritative, condensed Single Source of Truth engineering specification — read it in
 full before implementing any feature; it covers every binding rule, field list, default value, and
-diagram and takes precedence over the summary below if the two ever disagree.
+diagram, and takes precedence over the summary below if the two ever disagree.
+
+Copy `.env.example` to `.env` and fill in `DATABASE_URL` (real Postgres, `postgresql+asyncpg://...`)
+before running the app.
+
+### Commands
+
+- Run dev server: `python run.py` (uvicorn with reload, `127.0.0.1:8000`) or
+  `uvicorn src.main:app --reload`
+- Dependencies are pinned in `requirements.txt` (`pip install -r requirements.txt`)
+- No migrations (Alembic), linter, or test suite are wired up yet — add commands here once they exist;
+  do not invent them before they're real.
+
+## Project Structure (spec.md §57–58)
+
+```
+src/
+  main.py        # FastAPI app + lifespan (calls init_db/dispose on startup/shutdown)
+  core/          # cross-cutting infrastructure shared by all apps — config, db, (later: security, middleware, templating)
+    config/settings.py   # pydantic-settings Settings singleton, loaded from .env
+    db/main.py            # async engine/session factory, get_session() FastAPI dependency
+  apps/          # one package per feature/module (see spec.md §5 Modules) — auth, dashboard,
+                 # assistants, documents, knowledge, chat, realtime, settings. Each app is
+                 # self-contained (routes/services/repositories/models/schemas) and still follows
+                 # Route → Service → Repository (§16) internally.
+```
+
+- `src/core/` holds only shared infrastructure — never business logic or feature-specific code.
+- Config: import `settings` from `src.core.config.settings` — never read `os.environ` directly.
+- DB: obtain sessions only via the `get_session()` dependency (`src/core/db/main.py`) — never
+  instantiate `AsyncSession`/`SessionLocal` directly in route/service code.
 
 ## Project Purpose
 
