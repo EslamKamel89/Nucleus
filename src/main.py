@@ -3,6 +3,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from src.core.db.main import dispose, init_db
+from src.core.jinjia import main
 
 
 @asynccontextmanager
