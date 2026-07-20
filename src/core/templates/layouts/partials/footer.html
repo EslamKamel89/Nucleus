@@ -2,46 +2,170 @@
 <!-- Footer -->
 <!-- ========================= -->
 <footer class="border-t border-base-300 bg-base-200">
-  <div class="footer mx-auto max-w-7xl p-10 text-base-content">
-    <aside>
-      <div class="avatar placeholder">
-        <div class="bg-primary text-primary-content w-12 rounded-xl">
-          <span class="text-xl font-bold">N</span>
+  <!-- Main Footer -->
+  <div class="mx-auto max-w-7xl px-6 py-16">
+    <div class="grid gap-12 lg:grid-cols-[1.6fr_repeat(3,1fr)]">
+      <!-- Brand -->
+      <div class="space-y-6">
+        <a href="/" class="flex items-center gap-4">
+          <div class="avatar placeholder">
+            <div class="bg-primary text-primary-content w-14 rounded-2xl">
+              <span class="text-2xl font-black">N</span>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold">Nucleus</h2>
+            <p class="text-sm text-base-content/60">AI Knowledge Assistant</p>
+          </div>
+        </a>
+
+        <p class="max-w-md leading-7 text-base-content/70">
+          Learn modern backend engineering by building a production-inspired AI
+          platform powered by FastAPI, PostgreSQL, LangChain, HTMX, WebSockets,
+          and Retrieval-Augmented Generation.
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          <div class="badge badge-primary badge-outline">FastAPI</div>
+          <div class="badge badge-outline">LangChain</div>
+          <div class="badge badge-outline">pgvector</div>
+          <div class="badge badge-outline">HTMX</div>
+          <div class="badge badge-outline">WebSockets</div>
+        </div>
+
+        <div class="flex items-center gap-3 pt-2">
+          <a class="btn btn-circle btn-ghost">
+            <i class="bi bi-github text-lg"></i>
+          </a>
+
+          <a class="btn btn-circle btn-ghost">
+            <i class="bi bi-linkedin text-lg"></i>
+          </a>
+
+          <a class="btn btn-circle btn-ghost">
+            <i class="bi bi-twitter-x text-lg"></i>
+          </a>
+
+          <a class="btn btn-circle btn-ghost">
+            <i class="bi bi-envelope text-lg"></i>
+          </a>
         </div>
       </div>
 
-      <p>
-        <span class="text-lg font-bold">Nucleus</span>
-        <br />
-        Production-inspired AI Knowledge Assistant.
-      </p>
-    </aside>
+      <!-- Product -->
+      <nav>
+        <h3 class="footer-title text-base-content">Platform</h3>
 
-    <nav>
-      <h6 class="footer-title">Application</h6>
-      <a class="link link-hover">Features</a>
-      <a class="link link-hover">Architecture</a>
-      <a class="link link-hover">Documentation</a>
-    </nav>
+        <ul class="space-y-3">
+          <li>
+            <a class="link link-hover text-base-content/70"> Features </a>
+          </li>
 
-    <nav>
-      <h6 class="footer-title">Technology</h6>
-      <a class="link link-hover">FastAPI</a>
-      <a class="link link-hover">LangChain</a>
-      <a class="link link-hover">HTMX</a>
-      <a class="link link-hover">PostgreSQL</a>
-    </nav>
+          <li>
+            <a class="link link-hover text-base-content/70"> Architecture </a>
+          </li>
 
-    <nav>
-      <h6 class="footer-title">Account</h6>
-      <a class="link link-hover">Login</a>
-      <a class="link link-hover">Register</a>
-    </nav>
+          <li>
+            <a class="link link-hover text-base-content/70"> Documentation </a>
+          </li>
+
+          <li>
+            <a class="link link-hover text-base-content/70"> Roadmap </a>
+          </li>
+
+          <li>
+            <a class="link link-hover text-base-content/70"> Changelog </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Technology -->
+      <nav>
+        <h3 class="footer-title text-base-content">Technology</h3>
+
+        <ul class="space-y-3">
+          <li>
+            <a class="link link-hover text-base-content/70"> FastAPI </a>
+          </li>
+
+          <li>
+            <a class="link link-hover text-base-content/70"> PostgreSQL </a>
+          </li>
+
+          <li>
+            <a class="link link-hover text-base-content/70"> LangChain </a>
+          </li>
+
+          <li>
+            <a class="link link-hover text-base-content/70"> HTMX </a>
+          </li>
+
+          <li>
+            <a class="link link-hover text-base-content/70"> Alpine.js </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Get Started -->
+      <div class="space-y-6">
+        <div>
+          <h3 class="footer-title text-base-content">Get Started</h3>
+
+          <p class="text-sm leading-6 text-base-content/70">
+            Start building AI assistants powered by your own knowledge base.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <button class="btn btn-primary w-full">
+            <i class="bi bi-rocket-takeoff"></i>
+            Create Account
+          </button>
+
+          <button class="btn btn-outline w-full">Login</button>
+        </div>
+
+        <div class="rounded-box border border-base-300 bg-base-100 p-4">
+          <div class="flex items-center gap-3">
+            <div class="avatar placeholder">
+              <div class="bg-success text-success-content w-10 rounded-full">
+                <i class="bi bi-check-lg"></i>
+              </div>
+            </div>
+
+            <div>
+              <p class="font-medium">Open Source Learning</p>
+              <p class="text-sm text-base-content/60">
+                Built to understand every layer of modern AI applications.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div
-    class="border-t border-base-300 py-6 text-center text-sm text-base-content/60"
-  >
-    © 2026 Nucleus. Built for learning modern backend engineering.
+  <!-- Bottom Bar -->
+  <div class="border-t border-base-300 bg-base-300/30">
+    <div
+      class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-6 text-sm text-base-content/60 md:flex-row"
+    >
+      <p>
+        © 2026 <span class="font-semibold text-base-content">Nucleus</span>.
+        Built for learning modern backend engineering.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-6">
+        <a class="link link-hover">Privacy</a>
+        <a class="link link-hover">Terms</a>
+        <a class="link link-hover">Contact</a>
+
+        <div class="badge badge-success badge-outline gap-2">
+          <span class="h-2 w-2 rounded-full bg-success"></span>
+          Active Development
+        </div>
+      </div>
+    </div>
   </div>
 </footer>
