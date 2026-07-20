@@ -9,6 +9,6 @@ router = APIRouter(tags=["website"])
 async def home(request: Request):
     return templates.TemplateResponse(
         request=request,
-        name="pages/landing-page.html",
+        name="website/pages/landing-page.html",
         context={},
     )

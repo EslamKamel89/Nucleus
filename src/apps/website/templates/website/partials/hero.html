@@ -1,0 +1,117 @@
+<!-- ========================= -->
+<!-- Hero -->
+<!-- ========================= -->
+<section class="hero overflow-hidden py-24">
+  <div class="hero-content mx-auto max-w-7xl flex-col gap-16 lg:flex-row">
+    <div class="max-w-2xl flex-1">
+      <div class="badge badge-primary badge-outline mb-6 gap-2">
+        <i class="bi bi-stars"></i>
+        Production-Inspired Learning Project
+      </div>
+
+      <h1 class="text-5xl font-black leading-tight lg:text-7xl">
+        Build
+        <span class="text-primary">AI Assistants</span>
+        powered by your own knowledge.
+      </h1>
+
+      <p class="mt-8 text-lg leading-8 text-base-content/70">
+        Nucleus is an AI Knowledge Assistant platform built to learn modern
+        backend engineering through a production-inspired architecture. Create
+        assistants, upload documents, build searchable knowledge bases, and chat
+        using Retrieval-Augmented Generation (RAG).
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-4">
+        <button class="btn btn-primary btn-lg">
+          <i class="bi bi-rocket-takeoff"></i>
+          Get Started
+        </button>
+
+        <button class="btn btn-outline btn-lg">
+          <i class="bi bi-github"></i>
+          View Project
+        </button>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-2">
+        <div class="badge badge-outline">FastAPI</div>
+        <div class="badge badge-outline">PostgreSQL</div>
+        <div class="badge badge-outline">pgvector</div>
+        <div class="badge badge-outline">LangChain</div>
+        <div class="badge badge-outline">HTMX</div>
+        <div class="badge badge-outline">WebSockets</div>
+        <div class="badge badge-outline">Celery</div>
+        <div class="badge badge-outline">Redis</div>
+      </div>
+    </div>
+
+    <!-- Hero Card -->
+    <div class="w-full max-w-xl flex-1">
+      <div class="mockup-window border border-base-300 bg-base-200 shadow-2xl">
+        <div class="space-y-5 bg-base-100 p-8">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-bold">Assistant</h3>
+              <p class="text-sm text-base-content/60">
+                Python Documentation Expert
+              </p>
+            </div>
+
+            <div class="badge badge-success gap-2">
+              <span class="loading loading-spinner loading-xs"></span>
+              Ready
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="chat chat-end">
+              <div class="chat-bubble chat-bubble-primary">
+                Explain dependency injection in FastAPI.
+              </div>
+            </div>
+
+            <div class="chat chat-start">
+              <div class="chat-bubble">
+                Retrieving relevant documentation...
+              </div>
+            </div>
+
+            <div class="chat chat-start">
+              <div class="chat-bubble">
+                Context found from uploaded knowledge base.
+              </div>
+            </div>
+
+            <div class="chat chat-start">
+              <div class="chat-bubble">Generating streaming response...</div>
+            </div>
+          </div>
+
+          <progress
+            class="progress progress-primary w-full"
+            value="80"
+            max="100"
+          ></progress>
+
+          <div class="stats stats-vertical shadow lg:stats-horizontal">
+            <div class="stat">
+              <div class="stat-title">Documents</div>
+              <div class="stat-value text-primary">24</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">Chunks</div>
+              <div class="stat-value">3.8K</div>
+            </div>
+
+            <div class="stat">
+              <div class="stat-title">Vectors</div>
+              <div class="stat-value">3.8K</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,62 @@
+<!-- ========================= -->
+<!-- Header -->
+<!-- ========================= -->
+<header
+  class="sticky top-0 z-50 border-b border-base-300 bg-base-100/80 backdrop-blur"
+>
+  <div class="navbar mx-auto max-w-7xl px-6">
+    <div class="navbar-start">
+      <a href="/" class="flex items-center gap-3">
+        <div class="avatar placeholder">
+          <div class="bg-primary text-primary-content w-10 rounded-xl">
+            <span class="text-lg font-bold">N</span>
+          </div>
+        </div>
+
+        <div>
+          <h1 class="text-lg font-bold">Nucleus</h1>
+          <p class="text-xs text-base-content/60">AI Knowledge Assistant</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-2 px-1">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#technology">Technology</a></li>
+      </ul>
+    </div>
+
+    <div class="navbar-end hidden gap-2 md:flex">
+      <button class="btn btn-ghost">Login</button>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+
+    <div class="navbar-end md:hidden" x-data="{open:false}">
+      <button class="btn btn-square btn-ghost" @click="open=!open">
+        <i class="bi bi-list text-xl"></i>
+      </button>
+
+      <div
+        x-show="open"
+        x-transition
+        @click.outside="open=false"
+        class="absolute right-4 top-16 w-64 rounded-box border border-base-300 bg-base-100 p-2 shadow-2xl"
+      >
+        <ul class="menu">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#workflow">Workflow</a></li>
+          <li><a href="#technology">Technology</a></li>
+
+          <div class="divider my-1"></div>
+
+          <li><a>Login</a></li>
+          <li><a class="font-semibold">Register</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,18 @@
+{% extends "layouts/guest.html" %}
+
+{% block title %}
+  Nucleus — AI Knowledge Assistant
+{% endblock %}
+
+{% block content %}
+  <div class="min-h-screen bg-base-100">
+    {% include 'layouts/partials/navbar.html' %}
+    {% include 'website/partials/hero.html' %}
+    {% include 'website/partials/features.html' %}
+    {% include 'website/partials/architecture.html' %}
+    {% include 'website/partials/tech-stack.html' %}
+    {% include 'website/partials/workflow.html' %}
+    {% include 'website/partials/cta.html' %}
+    {% include 'layouts/partials/footer.html' %}
+  </div>
+{% endblock %}
