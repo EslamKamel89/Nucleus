@@ -4,7 +4,6 @@ from fastapi import FastAPI
 
 from src.apps.website import router as website_router
 from src.core.db.main import dispose, init_db
-from src.core.jinjia import main
 
 
 @asynccontextmanager
@@ -24,5 +23,5 @@ app.include_router(website_router)
 
 
 @app.get("/health")
-def health():
+async def health():
     return {"status": "ok"}

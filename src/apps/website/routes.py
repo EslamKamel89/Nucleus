@@ -1,8 +1,14 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
+
+from src.core.jinjia import templates
 
 router = APIRouter(tags=["website"])
 
 
 @router.get("/")
-async def home():
-    return "Website module is working"
+async def home(request: Request):
+    return templates.TemplateResponse(
+        request=request,
+        name="pages/landing-page.html",
+        context={},
+    )
