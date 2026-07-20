@@ -222,3 +222,4 @@ __marimo__/
 code.txt
 summarize.py
 .claudeignore
+*.md
